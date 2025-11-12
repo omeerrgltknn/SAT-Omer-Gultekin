@@ -1,0 +1,141 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #ffc881, #685000);
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background: rgba(255, 123, 0, 0.6);
+  backdrop-filter: blur(10px);
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #000822;
+}
+
+main {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.note-list {
+  background: rgba(202, 202, 202, 0.4);
+  backdrop-filter: blur(8px);
+  border-radius: 16px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 8px 24px rgba(255, 94, 0, 0.295);
+}
+
+.note-list h2 {
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  color: #000000;
+}
+
+.note-list ul {
+  list-style: none;
+}
+
+.note-list li {
+  background: rgba(255, 255, 255, 0.7);
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 12px;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.note-list li:hover {
+  transform: scale(1.02);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.9rem;
+  color: #000000;
+}
+
+.panel {
+  margin: 10px 0;
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.panel-baslik {
+  width: 100%;
+  padding: 12px;
+  background-color: #ff844b;
+  color: white;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+}
+.panel-icerik {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.8s ease, opacity 0.8s ease;
+  
+}
+
+.panel-icerik.goster {
+  max-height: 300px;
+  opacity: 1;
+  overflow-y: auto;
+}
+
+.nota {
+  transform: translateY(20px);
+  opacity: 0;
+  animation: dalga-giris 0.6s ease forwards;
+
+
+}
+
+.nota:nth-child(1) { animation-delay: 0.2s; }
+.nota:nth-child(2) { animation-delay: 0.4s; }
+
+@keyframes dalga-giris {
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+#aramaKutusu {
+  width: 100%;
+  padding: 0.8rem;
+  margin-bottom: 1rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0);
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
