@@ -1,2 +1,2 @@
 # SAT-Omer-Gultekin
-Bağlama Notaları Proje
+Bu projedeki amaç, bağlama çalan kişilerin nota bulmasında ve yeni eserler üretmesinde yardımcı olmaktır. Kullanıcı aradığı eseri kolayca bulmasını hedefliyoruz.
