@@ -144,6 +144,67 @@
     .solfej-listesi a:hover {
         color: #ff9933;
     }
+    
+    /* YENİ MODAL STİLLERİ */
+    .modal {
+        display: none; 
+        position: fixed; 
+        z-index: 2000; 
+        left: 0;
+        top: 0;
+        width: 100%; 
+        height: 100%; 
+        overflow: auto; 
+        background-color: rgba(0,0,0,0.9); 
+    }
+
+    .modal-icerik {
+        position: relative;
+        margin: 10% auto; /* Üstten ve alttan boşluk */
+        padding: 0;
+        width: 90%; 
+        max-width: 800px; 
+    }
+
+    .modal-kapat {
+        color: #fff;
+        position: absolute;
+        top: -30px; 
+        right: 0px; 
+        font-size: 35px;
+        font-weight: bold;
+        transition: 0.3s;
+        opacity: 0.7;
+        text-shadow: 0 0 5px #000;
+    }
+
+    .modal-kapat:hover,
+    .modal-kapat:focus {
+        color: #ff6600;
+        text-decoration: none;
+        cursor: pointer;
+        opacity: 1;
+    }
+
+    .video-kapsayici {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 Oran (9 / 16 * 100) */
+        height: 0;
+        overflow: hidden;
+        max-width: 100%;
+        background: #000;
+        border: 4px solid #ff6600;
+        border-radius: 8px;
+    }
+
+    .video-kapsayici iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
   </style>
 </head>
 <body>
@@ -184,7 +245,7 @@
     padding: 25px;
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
+    cursor: default; /* Kartın tamamı değil, sadece butonlar tıklanabilir */
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
@@ -224,6 +285,7 @@
     font-weight: bold;
     transition: background-color 0.3s ease;
     margin: 5px 8px;
+    cursor: pointer; /* Butonların tıklanabilir olması için */
 }
 
 .solfej-card a:hover {
@@ -246,41 +308,49 @@
         
         <div class="solfej-card">
             <h3> Selvi Boylum Al Yazmalım</h3>
-            <a href="https://youtu.be/g0vB2ekdFqY?si=HPk9cB6vgGVL4v0K" target="_blank" class="button original-video">
+            <a href="https://youtu.be/g0vB2ekdFqY?si=HPk9cB6vgGVL4v0K" data-video-url="g0vB2ekdFqY" class="button original-video video-ac">
         Orijinal Video
     </a>
-            <a href="https://youtu.be/DyvcVE1EPDM?si=Y-YRPpA9XGg1DDWL"target="_blank" class="button original-video">
+            <a href="https://youtu.be/DyvcVE1EPDM?si=Y-YRPpA9XGg1DDWL" data-video-url="DyvcVE1EPDM" class="button original-video video-ac">
             Solfej Videosu</a>
         </div>
         
               <div class="solfej-card">
             <h3>Ben Yoruldum Hayat</h3>
-            <a href="https://youtu.be/K7z3590-Mt0?si=h-Iut4MwIxs-HiZc" target="_blank " class="button original-video">
+            <a href="https://youtu.be/qAkzhvkAfww?si=UBfCI8xFEVQvfZMz" data-video-url="qAkzhvkAfww" class="button original-video video-ac">
               Orijinal Video</a>
-            <a href="https://youtu.be/p8GGGK1wFAE?si=_yGub-gNPKBA4N-Q" target="_blank" class="button original-video">
+            <a href="https://youtu.be/p8GGGK1wFAE?si=LFftLdani0JVfq86" data-video-url="p8GGGK1wFAE" class="button original-video video-ac">
               Solfej Videosu</a>
         </div>
         
                 <div class="solfej-card">
             <h3>Eklemedir Koca Konak</h3>
-            <a href="https://youtu.be/eiwph4WEBYM?si=GHXo9bjWQ4NfSsCt" target="_blank" class="original-video">Orijinal Video</a>
-            <a href="https://youtu.be/dTPgyiH09ug?si=JTeXB5wN3J2GMOMv" target="_blank" class="original-video">Solfej Videosu</a>
+            <a href="https://youtu.be/MdTlkAoJs9g?si=JuEiksFKo9FSYULu" data-video-url="MdTlkAoJs9g" class="original-video video-ac">Orijinal Video</a>
+            <a href="https://youtu.be/dTPgyiH09ug?si=JTeXB5wN3J2GMOMv" data-video-url="dTPgyiH09ug" class="original-video video-ac">Solfej Videosu</a>
         </div>
 
         <div class="solfej-card">
             <h3>Ela Gözlüm Ben Bu Elden Gidersem</h3>
-            <a href="https://youtu.be/9_DGiA_j8l4?si=302_nfy5ZJZriCWc" target="_blank" class="button original-video">Orijinal Video</a>
-            <a href="https://youtu.be/YcJotlW93h4?si=M9_iie-oBxUlk4gN" target="_blank" class="button original-video">Solfej Videosu</a>
+            <a href="https://youtu.be/4mhtdzg7cjA?si=BvuO8VPkg3lg3EfL" data-video-url="4mhtdzg7cjA" class="button original-video video-ac">Orijinal Video</a>
+            <a href="https://youtu.be/YcJotlW93h4?si=M9_iie-oBxUlk4gN" data-video-url="YcJotlW93h4" class="button original-video video-ac">Solfej Videosu</a>
         </div>
 
         <div class="solfej-card">
-            <h3>Gesi Bağları</h3>
-            <a href="baslangıcseviyenotalar.html" target="_blank" class="original-video">Orijinal Video</a>
-            <a href="baslangıcseviyenotalar.html" target="_blank" class="original-video">Solfej Videosu</a>
+            <h3>Gesi Bağlarında Dolanıyorum</h3>
+            <a href="https://youtu.be/26jAqWhrrwQ?si=VuNlWnz_rlyKx5Zr" data-video-url="26jAqWhrrwQ" class="button original-video video-ac">Orijinal Video</a>
+            <a href="https://youtu.be/fppNyYuR43I?si=8TxHdJu52B7qoKgp" data-video-url="fppNyYuR43I" class="button original-video video-ac">Solfej Videosu</a>
         </div>
 
     </div>
     </main>
+    
+    <div id="videoModal" class="modal">
+      <div class="modal-icerik">
+        <span class="modal-kapat">&times;</span>
+        <div class="video-kapsayici">
+          </div>
+      </div>
+    </div>
 
 
   <footer>
@@ -290,6 +360,10 @@
   <script>
     document.addEventListener('DOMContentLoaded', function() {
         var panelBasliklari = document.querySelectorAll('.panel-baslik');
+        var modal = document.getElementById('videoModal');
+        var kapatButonu = document.getElementsByClassName("modal-kapat")[0];
+        var videoKapsayici = document.querySelector('.video-kapsayici');
+        var videoAcButonlari = document.querySelectorAll('.video-ac');
 
         panelBasliklari.forEach(function(baslik) {
             baslik.addEventListener('click', function() {
@@ -311,6 +385,38 @@
                 }
             });
         });
+
+        // VİDEO OYNATMA FONKSİYONU
+        videoAcButonlari.forEach(function(buton) {
+            buton.addEventListener('click', function(e) {
+                e.preventDefault(); // Sayfa yönlendirmesini engeller
+                
+                var videoURL = this.getAttribute('href');
+                var videoID = this.getAttribute('data-video-url');
+
+                if (videoID) {
+                    var embedURL = 'https://www.youtube.com/embed/' + videoID + '?autoplay=1&rel=0';
+                    videoKapsayici.innerHTML = '<iframe src="' + embedURL + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                    modal.style.display = "block";
+                } else {
+                    alert("Video bağlantısı bulunamadı veya eksik.");
+                }
+            });
+        });
+
+        // BUTONA BASINCA VIDEO KAPANIR
+        kapatButonu.onclick = function() {
+            modal.style.display = "none";
+            videoKapsayici.innerHTML = ""; 
+        }
+
+ 
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                videoKapsayici.innerHTML = ""; 
+            }
+        }
     });
   </script>
 </body>
