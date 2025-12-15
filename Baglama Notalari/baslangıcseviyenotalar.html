@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Başlangıç Seviye Notalar</title>
+     <style>
+  
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top left, #0f0f0f, #1a1a1a);
+      color: #f0f0f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+   
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(12px);
+      padding: 1rem 2rem;
+      border-bottom: 2px solid #ff6600;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      color: #ff6600;
+      text-shadow: 0 0 15px #ff6600;
+    }
+    .menu {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+    .menu li a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    .menu li a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: #ff6600;
+      transition: width 0.3s ease;
+    }
+    .menu li a:hover { color: #ff6600; }
+    .menu li a:hover::after { width: 100%; }
+
+    .main-content {
+      flex-grow: 1; 
+      padding: 40px 20px;
+      max-width: 900px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+
+    .panel {
+      margin: 15px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 0 15px rgba(255,102,0,0.4);
+    }
+    .panel-baslik {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(90deg, #ff6600, #ff3300);
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.3s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.1em;
+    }
+    .panel-baslik:hover {
+      background: linear-gradient(90deg, #ff3300, #ff6600);
+    }
+    .panel-baslik span {
+        transition: transform 0.3s ease;
+        font-size: 1.2em;
+    }
+    .panel-baslik.active span {
+        transform: rotate(90deg);
+    }
+
+    .panel-icerik {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.8s ease, opacity 0.8s ease;
+      padding: 0 14px;
+      color: #ccc;
+    }
+    .panel-icerik.goster {
+      max-height: 400px;
+      padding: 14px;
+      border-top: 1px solid rgba(255, 102, 0, 0.3);
+    }
+
+    .solfej-listesi {
+        list-style: none;
+        padding: 10px 0;
+    }
+
+    .solfej-listesi li {
+        padding: 8px 0;
+        border-bottom: 1px dashed #333;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .solfej-listesi li:last-child {
+        border-bottom: none;
+    }
+
+    .solfej-listesi a {
+        color: #ff6600;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.2s ease;
+    }
+
+    .solfej-listesi a:hover {
+        color: #ff9933;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Solfej</h1>
+    <nav>
+      <ul class="menu">
+        <li><a href="index.html">Anasayfa</a></li>
+        <li><a href="notalar.html">Notalar</a></li>
+        <li><a href="videolar.html">Videolar</a></li>
+        <li><a href="hakkımızda.html">hakkımızda</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    
+    <style>
+
+.solfej-panel {
+    max-width: 1200px;
+    margin: 40px auto; 
+    padding: 0 20px;
+    color: #f0f0f0; 
+}
+
+
+.solfej-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 30px; 
+    padding: 20px 0;
+}
+
+.solfej-card {
+    background: rgba(255, 255, 255, 0.05); 
+    border: 1px solid rgba(255, 102, 0, 0.4); 
+    padding: 25px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+.solfej-card:hover {
+    transform: translateY(-8px); 
+    box-shadow: 0 15px 30px rgba(255, 102, 0, 0.4); 
+    background: rgba(255, 255, 255, 0.08); 
+}
+
+.solfej-card h3 {
+    color: #ff6600; 
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.4em;
+    border-bottom: 1px dashed rgba(255, 102, 0, 0.2);
+    padding-bottom: 10px;
+}
+
+.solfej-card p {
+    font-size: 0.95em;
+    color: #cccccc;
+    min-height: 50px; 
+    margin-bottom: 20px;
+}
+
+.solfej-card a {
+    display: inline-block;
+    background-color: #ff6600;
+    color: #000;
+    padding: 10px 25px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.solfej-card a:hover {
+    background-color: #e65c00;
+}
+
+
+@media (max-width: 650px) {
+    .solfej-cards-container {
+        grid-template-columns: 1fr; 
+    }
+}
+</style>
+
+<main class="main-content">
+    
+    <h2>Başlangıç Seviye Notalar</h2>
+    <p style="margin-bottom: 40px; color: #aaa;">Bağlamaya başladığınız bu yolda sizlerin gelişiminde katkıda bulunacak eserler. İyi çalışmalar.</p>
+
+    <div class="solfej-cards-container">
+        
+        <div class="solfej-card">
+            <h3> Selvi Boylum Al Yazmalım</h3>
+            <a href="selviboylumalyazmalim.html">Görüntüle</a>
+        </div>
+        
+        <div class="solfej-card">
+            <h3>Eklemedir Koca Konak</h3>
+            <a href="selviboylumalyazmalim.html">Görüntüle</a>
+        </div>
+      
+        <div class="solfej-card">
+            <h3>Ela Gözlüm Ben Bu Elden Gidersem</h3>
+            <a href="elagözlüm.html">Görüntüle</a>
+        </div>
+
+
+        <div class="solfej-card">
+            <h3>Gesi Bağları</h3>
+            <a href="gesibaglari.html">Görüntüle</a>
+        </div>
+
+
+    </div>
+    </main>
+
+
+  <footer>
+    <p>© 2025 Bağlama Notaları</p>
+  </footer>
+
+  <script>
+ 
+    document.addEventListener('DOMContentLoaded', function() {
+        var panelBasliklari = document.querySelectorAll('.panel-baslik');
+
+        panelBasliklari.forEach(function(baslik) {
+            baslik.addEventListener('click', function() {
+                var icerik = this.nextElementSibling;
+                
+                if (icerik.classList.contains('goster')) {
+                    icerik.classList.remove('goster');
+                    this.classList.remove('active');
+                } else {
+                    document.querySelectorAll('.panel-icerik.goster').forEach(function(acikIcerik) {
+                        acikIcerik.classList.remove('goster');
+                        acikIcerik.previousElementSibling.classList.remove('active');
+                    });
+                
+                    icerik.classList.add('goster');
+                    this.classList.add('active');
+                }
+            });
+        });
+    });
+  </script>
+</body>
+</html>

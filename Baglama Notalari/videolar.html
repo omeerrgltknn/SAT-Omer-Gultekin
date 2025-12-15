@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Videolar</title>
+     <style>
+  
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top left, #0f0f0f, #1a1a1a);
+      color: #f0f0f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+   
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(12px);
+      padding: 1rem 2rem;
+      border-bottom: 2px solid #ff6600;
+      text-align: center;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      color: #ff6600;
+      text-shadow: 0 0 15px #ff6600;
+    }
+    .menu {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+    .menu li a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+    .menu li a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background: #ff6600;
+      transition: width 0.3s ease;
+    }
+    .menu li a:hover { color: #ff6600; }
+    .menu li a:hover::after { width: 100%; }
+
+ 
+    .main-content {
+      flex-grow: 1; 
+      padding: 40px 20px;
+      max-width: 900px;
+      width: 100%;
+      margin: 0 auto; 
+    }
+
+    .panel {
+      margin: 15px 0;
+      border-radius: 12px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(6px);
+      box-shadow: 0 0 15px rgba(255,102,0,0.4);
+    }
+    .panel-baslik {
+      width: 100%;
+      padding: 14px;
+      background: linear-gradient(90deg, #ff6600, #ff3300);
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      transition: background 0.3s ease;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.1em;
+    }
+    .panel-baslik:hover {
+      background: linear-gradient(90deg, #ff3300, #ff6600);
+    }
+    .panel-baslik span {
+        transition: transform 0.3s ease;
+        font-size: 1.2em;
+    }
+    .panel-baslik.active span {
+        transform: rotate(90deg); 
+    }
+
+    .panel-icerik {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 0.8s ease, opacity 0.8s ease;
+      padding: 0 14px;
+      color: #ccc;
+    }
+    .panel-icerik.goster {
+      max-height: 400px;
+      opacity: 1;
+      padding: 14px;
+      border-top: 1px solid rgba(255, 102, 0, 0.3);
+    }
+
+    .solfej-listesi {
+        list-style: none;
+        padding: 10px 0;
+    }
+
+    .solfej-listesi li {
+        padding: 8px 0;
+        border-bottom: 1px dashed #333;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .solfej-listesi li:last-child {
+        border-bottom: none;
+    }
+
+    .solfej-listesi a {
+        color: #ff6600;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.2s ease;
+    }
+
+    .solfej-listesi a:hover {
+        color: #ff9933;
+    }
+    
+    /* YENİ MODAL STİLLERİ */
+    .modal {
+        display: none; 
+        position: fixed; 
+        z-index: 2000; 
+        left: 0;
+        top: 0;
+        width: 100%; 
+        height: 100%; 
+        overflow: auto; 
+        background-color: rgba(0,0,0,0.9); 
+    }
+
+    .modal-icerik {
+        position: relative;
+        margin: 10% auto; /* Üstten ve alttan boşluk */
+        padding: 0;
+        width: 90%; 
+        max-width: 800px; 
+    }
+
+    .modal-kapat {
+        color: #fff;
+        position: absolute;
+        top: -30px; 
+        right: 0px; 
+        font-size: 35px;
+        font-weight: bold;
+        transition: 0.3s;
+        opacity: 0.7;
+        text-shadow: 0 0 5px #000;
+    }
+
+    .modal-kapat:hover,
+    .modal-kapat:focus {
+        color: #ff6600;
+        text-decoration: none;
+        cursor: pointer;
+        opacity: 1;
+    }
+
+    .video-kapsayici {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 Oran (9 / 16 * 100) */
+        height: 0;
+        overflow: hidden;
+        max-width: 100%;
+        background: #000;
+        border: 4px solid #ff6600;
+        border-radius: 8px;
+    }
+
+    .video-kapsayici iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Solfej</h1>
+    <nav>
+      <ul class="menu">
+        <li><a href="index.html">Anasayfa</a></li>
+        <li><a href="notalar.html">Notalar</a></li>
+        <li><a href="videolar.html">Videolar</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    
+    <style>
+.solfej-panel {
+    max-width: 1200px;
+    margin: 40px auto; 
+    padding: 0 20px;
+    color: #f0f0f0; 
+}
+
+.solfej-cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+    gap: 30px; 
+    padding: 20px 0;
+}
+
+
+.solfej-card {
+    background: rgba(255, 255, 255, 0.05); 
+    border: 1px solid rgba(255, 102, 0, 0.4); 
+    border-radius: 12px;
+    padding: 25px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default; /* Kartın tamamı değil, sadece butonlar tıklanabilir */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+}
+
+
+.solfej-card:hover {
+    transform: translateY(-8px); 
+    box-shadow: 0 15px 30px rgba(255, 102, 0, 0.4);
+    background: rgba(255, 255, 255, 0.08); 
+}
+
+
+.solfej-card h3 {
+    color: #ff6600; 
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.4em;
+    border-bottom: 1px dashed rgba(255, 102, 0, 0.2);
+    padding-bottom: 10px;
+}
+
+
+.solfej-card p {
+    font-size: 0.95em;
+    color: #cccccc;
+    min-height: 50px; 
+    margin-bottom: 20px;
+}
+
+
+.solfej-card a {
+    display: inline-block;
+    background-color: #ff6600;
+    color: #000;
+    padding: 8px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin: 5px 8px;
+    cursor: pointer; /* Butonların tıklanabilir olması için */
+}
+
+.solfej-card a:hover {
+    background-color: #e65c00;
+}
+
+@media (max-width: 650px) {
+    .solfej-cards-container {
+        grid-template-columns: 1fr; 
+    }
+}
+</style>
+
+<main class="main-content">
+    
+    <h2>Türkü Videoları</h2>
+    <p style="margin-bottom: 40px; color: #aaa;">Solfejine çalıştığınız eserlerin orijinal videoları ve solfej videolarına buradan ulaşabilirsiniz.</p>
+
+    <div class="solfej-cards-container">
+        
+        <div class="solfej-card">
+            <h3> Selvi Boylum Al Yazmalım</h3>
+            <a href="https://youtu.be/g0vB2ekdFqY?si=HPk9cB6vgGVL4v0K" data-video-url="g0vB2ekdFqY" class="button original-video video-ac">
+        Orijinal Video
+    </a>
+            <a href="https://youtu.be/DyvcVE1EPDM?si=Y-YRPpA9XGg1DDWL" data-video-url="DyvcVE1EPDM" class="button original-video video-ac">
+            Solfej Videosu</a>
+        </div>
+        
+              <div class="solfej-card">
+            <h3>Ben Yoruldum Hayat</h3>
+            <a href="https://youtu.be/qAkzhvkAfww?si=UBfCI8xFEVQvfZMz" data-video-url="qAkzhvkAfww" class="button original-video video-ac">
+              Orijinal Video</a>
+            <a href="https://youtu.be/p8GGGK1wFAE?si=LFftLdani0JVfq86" data-video-url="p8GGGK1wFAE" class="button original-video video-ac">
+              Solfej Videosu</a>
+        </div>
+        
+                <div class="solfej-card">
+            <h3>Eklemedir Koca Konak</h3>
+            <a href="https://youtu.be/MdTlkAoJs9g?si=JuEiksFKo9FSYULu" data-video-url="MdTlkAoJs9g" class="original-video video-ac">Orijinal Video</a>
+            <a href="https://youtu.be/dTPgyiH09ug?si=JTeXB5wN3J2GMOMv" data-video-url="dTPgyiH09ug" class="original-video video-ac">Solfej Videosu</a>
+        </div>
+
+        <div class="solfej-card">
+            <h3>Ela Gözlüm Ben Bu Elden Gidersem</h3>
+            <a href="https://youtu.be/4mhtdzg7cjA?si=BvuO8VPkg3lg3EfL" data-video-url="4mhtdzg7cjA" class="button original-video video-ac">Orijinal Video</a>
+            <a href="https://youtu.be/YcJotlW93h4?si=M9_iie-oBxUlk4gN" data-video-url="YcJotlW93h4" class="button original-video video-ac">Solfej Videosu</a>
+        </div>
+
+        <div class="solfej-card">
+            <h3>Gesi Bağlarında Dolanıyorum</h3>
+            <a href="https://youtu.be/26jAqWhrrwQ?si=VuNlWnz_rlyKx5Zr" data-video-url="26jAqWhrrwQ" class="button original-video video-ac">Orijinal Video</a>
+            <a href="https://youtu.be/fppNyYuR43I?si=8TxHdJu52B7qoKgp" data-video-url="fppNyYuR43I" class="button original-video video-ac">Solfej Videosu</a>
+        </div>
+
+    </div>
+    </main>
+    
+    <div id="videoModal" class="modal">
+      <div class="modal-icerik">
+        <span class="modal-kapat">&times;</span>
+        <div class="video-kapsayici">
+          </div>
+      </div>
+    </div>
+
+
+  <footer>
+    <p>© 2025 Bağlama Notaları</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var panelBasliklari = document.querySelectorAll('.panel-baslik');
+        var modal = document.getElementById('videoModal');
+        var kapatButonu = document.getElementsByClassName("modal-kapat")[0];
+        var videoKapsayici = document.querySelector('.video-kapsayici');
+        var videoAcButonlari = document.querySelectorAll('.video-ac');
+
+        panelBasliklari.forEach(function(baslik) {
+            baslik.addEventListener('click', function() {
+
+                var icerik = this.nextElementSibling;
+                
+
+                if (icerik.classList.contains('goster')) {
+                    icerik.classList.remove('goster');
+                    this.classList.remove('active');
+                } else {
+                    document.querySelectorAll('.panel-icerik.goster').forEach(function(acikIcerik) {
+                        acikIcerik.classList.remove('goster');
+                        acikIcerik.previousElementSibling.classList.remove('active');
+                    });
+                    
+                    icerik.classList.add('goster');
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // VİDEO OYNATMA FONKSİYONU
+        videoAcButonlari.forEach(function(buton) {
+            buton.addEventListener('click', function(e) {
+                e.preventDefault(); // Sayfa yönlendirmesini engeller
+                
+                var videoURL = this.getAttribute('href');
+                var videoID = this.getAttribute('data-video-url');
+
+                if (videoID) {
+                    var embedURL = 'https://www.youtube.com/embed/' + videoID + '?autoplay=1&rel=0';
+                    videoKapsayici.innerHTML = '<iframe src="' + embedURL + '" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+                    modal.style.display = "block";
+                } else {
+                    alert("Video bağlantısı bulunamadı veya eksik.");
+                }
+            });
+        });
+
+        // BUTONA BASINCA VIDEO KAPANIR
+        kapatButonu.onclick = function() {
+            modal.style.display = "none";
+            videoKapsayici.innerHTML = ""; 
+        }
+
+ 
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                videoKapsayici.innerHTML = ""; 
+            }
+        }
+    });
+  </script>
+</body>
+</html>

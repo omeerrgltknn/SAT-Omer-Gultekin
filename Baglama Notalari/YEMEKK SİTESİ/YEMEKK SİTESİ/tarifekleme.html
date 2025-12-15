@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yeni Tarif Ekle | Yemek Dünyam</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1><a href="index.html">Yemek Dünyam</a></h1>
+    </header>
+
+    <main>
+        <h2>Yeni Tarif Ekle</h2>
+        <p>Tarifiniz admin onayından geçtikten sonra sitede yayınlanacaktır.</p>
+
+        <form action="#" method="post" enctype="multipart/form-data">
+            <div>
+                <label for="recipe-title">Tarif Başlığı:</label>
+                <input type="text" id="recipe-title" name="recipe_title" required>
+            </div>
+            <div>
+                <label for="recipe-summary">Kısa Açıklama (Ana sayfada görünecek):</label>
+                <textarea id="recipe-summary" name="recipe_summary" rows="3"></textarea>
+            </div>
+            <div>
+                <label for="recipe-ingredients">Malzemeler (Her birini yeni satıra yazın):</label>
+                <textarea id="recipe-ingredients" name="recipe_ingredients" rows="10" required></textarea>
+            </div>
+            <div>
+                <label for="recipe-instructions">Hazırlanışı (Adım adım anlatın):</label>
+                <textarea id="recipe-instructions" name="recipe_instructions" rows="15" required></textarea>
+            </div>
+            <div>
+                <label for="recipe-photo">Tarif Fotoğrafı:</label>
+                <input type="file" id="recipe-photo" name="recipe_photo" accept="image/jpeg, image/png">
+            </div>
+            <div>
+                <button type="submit">Onaya Gönder</button>
+            </div>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Yemek Dünyam. Tüm hakları saklıdır.</p>
+    </footer>
+</body>
+</html>
