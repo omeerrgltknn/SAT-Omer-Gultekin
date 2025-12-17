@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hakkımızda</title>
+    <title>Acem Kızı</title>
      <style>
   
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -60,14 +60,14 @@
     .menu li a:hover { color: #ff6600; }
     .menu li a:hover::after { width: 100%; }
 
-   
     .main-content {
       flex-grow: 1; 
       padding: 40px 20px;
-      max-width: 900px;
+      max-width: 1200px; 
       width: 100%;
-      margin: 0 auto; 
+      margin: 0 auto;
     }
+
 
     .panel {
       margin: 15px 0;
@@ -95,13 +95,12 @@
     .panel-baslik:hover {
       background: linear-gradient(90deg, #ff3300, #ff6600);
     }
-
     .panel-baslik span {
         transition: transform 0.3s ease;
         font-size: 1.2em;
     }
     .panel-baslik.active span {
-        transform: rotate(90deg); 
+        transform: rotate(90deg);
     }
 
     .panel-icerik {
@@ -114,11 +113,9 @@
     }
     .panel-icerik.goster {
       max-height: 400px;
-      opacity: 1;
       padding: 14px;
       border-top: 1px solid rgba(255, 102, 0, 0.3);
     }
-
 
     .solfej-listesi {
         list-style: none;
@@ -146,108 +143,147 @@
     .solfej-listesi a:hover {
         color: #ff9933;
     }
+    
+    .solfej-panel {
+        max-width: 1200px; 
+        margin: 40px auto; 
+        padding: 0 20px;
+        color: #f0f0f0; 
+    }
+
+    .solfej-cards-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+        gap: 30px; 
+        padding: 20px 0;
+    }
+
+    .solfej-card {
+        background: rgba(255, 255, 255, 0.05); 
+        border: 1px solid rgba(255, 102, 0, 0.4); 
+        padding: 25px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: default; 
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+
+    .solfej-card:hover {
+        transform: translateY(-8px); 
+        box-shadow: 0 15px 30px rgba(255, 102, 0, 0.4); 
+        background: rgba(255, 255, 255, 0.08); 
+    }
+
+    .solfej-card h3 {
+        color: #ff6600; 
+        margin-top: 0;
+        margin-bottom: 15px;
+        font-size: 1.4em;
+        border-bottom: 1px dashed rgba(255, 102, 0, 0.2);
+        padding-bottom: 10px;
+    }
+
+    .solfej-card h4.card-subtitle { 
+        color: #ff9933;
+        font-size: 1.2em;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+    }
+    
+
+    .solfej-card p {
+
+        font-family: 'Consolas', 'Lucida Console', monospace; 
+        font-size: 1.0em; 
+        color: #cccccc;
+        min-height: 50px; 
+        margin-bottom: 20px;
+        white-space: pre-wrap; 
+        text-align: center; 
+        line-height: 1.6;
+    }
+
+
+    .solfej-card a {
+        display: inline-block;
+        background-color: #ff6600;
+        color: #000;
+        padding: 10px 25px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+    }
+
+    .solfej-card a:hover {
+        background-color: #e65c00;
+    }
+
+
+    @media (max-width: 768px) {
+        .solfej-cards-container {
+            grid-template-columns: 1fr; 
+        }
+    }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Hakkımızda</h1>
+    <h1>Acem Kızı</h1>
     <nav>
       <ul class="menu">
         <li><a href="index.html">Anasayfa</a></li>
         <li><a href="notalar.html">Notalar</a></li>
         <li><a href="videolar.html">Videolar</a></li>
-        <li><a href="hakkımızda.html">Hakkımızda</a></li>
       </ul>
     </nav>
   </header>
 
   <main class="main-content">
     
-    <style>
+    <h2>Acem Kızı</h2>
+    <p style="margin-bottom: 40px; color: #aaa;"> adlı eserin notaları ve sözleri. İyi çalışmalar dileriz.</p>
 
-.solfej-panel {
-    max-width: 1200px;
-    margin: 40px auto; 
-    padding: 0 20px;
-    color: #f0f0f0; 
-}
+    <div class="solfej-cards-container">
+        
+        <div class="solfej-card">
+            <h3>Notalar</h3>
+            <h4 class="card-subtitle">BAĞLAMA NOTALARI</h4> 
+            <p>
+fa fa fa sol la sol fa mi
+Fa sol fa mi re re re
+Mi fa mi re do re do
+Fa fa re re mi re do do
+Mi re do si la
+Re do si si la la
+Sol la la si do la la la fa sol la sol la la sol fa mi fa
+La la sol sol fa la sol sol mi fa mi
+re re mi do re mi do do
 
-.solfej-cards-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-    gap: 30px; 
-    padding: 20px 0;
-}
+            </p>
+        </div>
+        
+        <div class="solfej-card">
+            <h3>Şarkı Sözleri</h3>
+            <h4 class="card-subtitle">ESERİN SÖZLERİ</h4>
+            <p>
+Çırpınıp Da Şan Ovaya Çıkınca
+Eğlen Şan Ovada Gal Acem Gızı.
+Uğrun Uğrun Gaş Altından Bakınca
+Can Telef Ediyor Gül Acem Gızı.
 
-.solfej-card {
+Seni Seven Oğlan Neylesin Malı,
+Yumdukça Gözünden Döker Mercanı.
+Burun Fındık Ağzı Gahve Fincanı,
+Şeker Mi, Şerbet Mi Bal Acem Gızı.
 
-    background: rgba(255, 255, 255, 0.05); 
-    border: 1px solid rgba(255, 102, 0, 0.4); 
-    border-radius: 12px;
-    padding: 25px;
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
+            </p>
+        </div>
+        
 
-.solfej-card:hover {
-    transform: translateY(-8px); 
-    box-shadow: 0 15px 30px rgba(255, 102, 0, 0.4); 
-    background: rgba(255, 255, 255, 0.08);
-}
-
-.solfej-card h3 {
-    color: #ff6600; 
-    margin-top: 0;
-    margin-bottom: 15px;
-    font-size: 1.4em;
-    border-bottom: 1px dashed rgba(255, 102, 0, 0.2);
-    padding-bottom: 10px;
-}
-
-.solfej-card p {
-    font-size: 0.95em;
-    color: #cccccc;
-    min-height: 50px;
-    margin-bottom: 20px;
-}
-
-.solfej-card a {
-    display: inline-block;
-    background-color: #ff6600;
-    color: #000;
-    padding: 10px 25px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-}
-
-.solfej-card a:hover {
-    background-color: #e65c00;
-}
-
-@media (max-width: 650px) {
-    .solfej-cards-container {
-        grid-template-columns: 1fr; 
-    }
-}
-</style>
-
-<main class="main-content">
-    
-    <h2>Özgeçmiş</h2>
-    <p style="margin-bottom: 40px; color: #aaa;">Yozgat Bozok Üniversitesi'nde Bilgisayar programcılığı 
-        eğitimi almaktayım.
-    </p>
-
- <h2>İletişim Bilgilerimiz</h2>
-<p>
-    TELEFON: 0555 555 55 55 <br>
-    İNSTAGRAM: omergultekin.jk
-</p>
+    </div>
     </main>
 
 
@@ -256,31 +292,6 @@
   </footer>
 
   <script>
-
-    document.addEventListener('DOMContentLoaded', function() {
-        var panelBasliklari = document.querySelectorAll('.panel-baslik');
-
-        panelBasliklari.forEach(function(baslik) {
-            baslik.addEventListener('click', function() {
-            
-                var icerik = this.nextElementSibling;
-                
-
-                if (icerik.classList.contains('goster')) {
-                    icerik.classList.remove('goster');
-                    this.classList.remove('active');
-                } else {
-                    document.querySelectorAll('.panel-icerik.goster').forEach(function(acikIcerik) {
-                        acikIcerik.classList.remove('goster');
-                        acikIcerik.previousElementSibling.classList.remove('active');
-                    });
-
-                    icerik.classList.add('goster');
-                    this.classList.add('active');
-                }
-            });
-        });
-    });
   </script>
 </body>
 </html>
